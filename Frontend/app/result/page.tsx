@@ -11,7 +11,7 @@ export default function Result() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null)
 
   useEffect(() => {
-    const price = localStorage.getItem("estimatedPrice")
+    const price = "150"
     if (price) {
       setEstimatedPrice(Number.parseFloat(price))
     }
