@@ -6,8 +6,8 @@ import { Navbar } from "./components/Navbar"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "PhonePricer - Estimez le prix de votre téléphone",
-  description: "Obtenez une estimation rapide et précise du prix de votre téléphone",
+  title: "NeuraPrice - Estimez le prix de vos objets",
+  description: "Obtenez une estimation rapide et précise",
 }
 
 export default function RootLayout({
