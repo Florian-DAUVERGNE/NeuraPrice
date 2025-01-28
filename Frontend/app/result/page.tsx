@@ -5,16 +5,44 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { ArrowLeft, Smartphone } from "lucide-react"
+import { ArrowLeft, Smartphone, Loader2 } from "lucide-react"
 
 export default function Result() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    const price = "150"
-    if (price) {
-      setEstimatedPrice(Number.parseFloat(price))
+    const fetchPrice = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            brand: "Apple",
+            model: "iPhone 12",
+            condition: "Good"
+          })
+        })
+
+        if (!response.ok) {
+          throw new Error("Erreur lors de la requête")
+        }
+
+        const data = await response.json()
+        if (data.price) {
+          setEstimatedPrice(Number(data.price))
+        }
+      } catch (error) {
+        console.error("Erreur:", error)
+        setEstimatedPrice(null)
+      } finally {
+        setIsLoading(false)
+      }
     }
+
+    fetchPrice()
   }, [])
 
   return (
@@ -27,7 +55,17 @@ export default function Result() {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          {estimatedPrice !== null ? (
+          {isLoading ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center justify-center text-xl text-center"
+            >
+              <Loader2 className="mr-2 animate-spin" />
+              Chargement de l'estimation...
+            </motion.div>
+          ) : estimatedPrice !== null ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -57,4 +95,3 @@ export default function Result() {
     </main>
   )
 }
-
