@@ -21,8 +21,7 @@ export default function Result() {
           },
           body: JSON.stringify({
             brand: "Apple",
-            model: "iPhone 12",
-            condition: "Good"
+            condition: "Bon état"
           })
         })
 

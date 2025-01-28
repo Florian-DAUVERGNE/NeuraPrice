@@ -72,11 +72,9 @@ export default function PhoneForm() {
                 <SelectValue placeholder="Sélectionnez l'état" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="neuf">Neuf</SelectItem>
-                <SelectItem value="excellent">Excellent</SelectItem>
-                <SelectItem value="bon">Bon</SelectItem>
-                <SelectItem value="moyen">Moyen</SelectItem>
-                <SelectItem value="mauvais">Mauvais</SelectItem>
+                <SelectItem value="Neuf">Neuf</SelectItem>
+                <SelectItem value="Bon état">Bon état</SelectItem>
+                <SelectItem value="Occasion">Occasion</SelectItem>
               </SelectContent>
             </Select>
           </motion.div>

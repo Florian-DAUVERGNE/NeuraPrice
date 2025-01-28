@@ -1,10 +1,7 @@
-from flask import Flask,jsonify
+from flask import Flask,jsonify, request
 import pickle
 import pandas as pd
 from flask_cors import CORS
-
-
-
 
 # Charger le modèle
 with open('modele_telephone.pkl', 'rb') as f:
@@ -27,20 +24,23 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 @app.route('/predict', methods=['POST'])
-# Utiliser le modèle pour faire des prédictions
 def pred():
-    # Exemple de nouvelles données
-    nouvelle_marque = ['Apple']  # Exemple de nouvelle marque
-    nouvel_etat = ['Occasion']  # Exemple de nouvel état
+    # Parse JSON payload
+    data = request.get_json()
 
-    # Encoder les nouvelles données
+    # Extract the necessary fields
+    nouvelle_marque = [data.get('brand', 'Apple')]  # Default to 'Apple' if not provided
+    nouvel_etat = [data.get('condition', 'Occasion')]  # Default to 'Occasion' if not provided
+
+    # Encode the data
     marque_encoded = label_encoder_marque.transform(nouvelle_marque)
     etat_encoded = label_encoder_etat.transform(nouvel_etat)
 
-    # Créer le tableau des caractéristiques avec les variables encodées
-    X_nouvelles_donnees = [[marque_encoded[0], etat_encoded[0]]]  # Exemple avec une ligne de données
+    # Prepare data for prediction
+    X_nouvelles_donnees = [[marque_encoded[0], etat_encoded[0]]]
 
-    # Prédire avec le modèle
+    # Predict using the model
     y_pred = modele_charge.predict(X_nouvelles_donnees)
 
+    # Return the prediction result as JSON
     return jsonify({"price": str(y_pred[0])})
