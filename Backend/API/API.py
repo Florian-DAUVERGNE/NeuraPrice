@@ -1,6 +1,10 @@
-from flask import Flask
+from flask import Flask,jsonify
 import pickle
 import pandas as pd
+from flask_cors import CORS
+
+
+
 
 # Charger le modèle
 with open('modele_telephone.pkl', 'rb') as f:
@@ -15,11 +19,14 @@ with open('encodeurs.pkl', 'rb') as f:
 
 app = Flask(__name__)
 
+CORS(app)
+
+
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/predict")
+@app.route('/predict', methods=['POST'])
 # Utiliser le modèle pour faire des prédictions
 def pred():
     # Exemple de nouvelles données
@@ -36,4 +43,4 @@ def pred():
     # Prédire avec le modèle
     y_pred = modele_charge.predict(X_nouvelles_donnees)
 
-    return str(y_pred)
+    return jsonify({"price": str(y_pred[0])})
