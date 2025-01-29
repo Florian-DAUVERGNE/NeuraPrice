@@ -13,15 +13,9 @@ with open('encodeurs.pkl', 'rb') as f:
     label_encoder_marque = encodeurs['marque_encoder']
     label_encoder_etat = encodeurs['etat_encoder']
 
-
 app = Flask(__name__)
 
 CORS(app)
-
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
 
 @app.route('/predict', methods=['POST'])
 def pred():
