@@ -12,14 +12,19 @@ export default function Result() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
-  const searchParams = useSearchParams();
-
-  const brand = searchParams.get("brand");
-  const condition = searchParams.get("condition");
-  const endpoint = searchParams.get("endpoint");
-
   useEffect(() => {
     const fetchPrice = async () => {
+      const params = new URLSearchParams(window.location.search); // Ou searchParams selon ton usage
+      const allParams = {};
+    
+      for (const [key, value] of params.entries()) {
+        allParams[key] = value;
+      }
+    
+      const endpoint = allParams["endpoint"]
+    
+      delete allParams["endpoint"];
+    
       try {
         const response = await fetch(`http://localhost:5000/predict/${endpoint}`, {
           method: "POST",
@@ -27,8 +32,7 @@ export default function Result() {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            brand,
-            condition
+            allParams
           })
         })
 
