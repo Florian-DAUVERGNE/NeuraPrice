@@ -1,5 +1,6 @@
 "use client"
 
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -11,17 +12,23 @@ export default function Result() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
+  const searchParams = useSearchParams();
+
+  const brand = searchParams.get("brand");
+  const condition = searchParams.get("condition");
+  const endpoint = searchParams.get("endpoint");
+
   useEffect(() => {
     const fetchPrice = async () => {
       try {
-        const response = await fetch("http://localhost:5000/predict", {
+        const response = await fetch(`http://localhost:5000/predict/${endpoint}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            brand: "Apple",
-            condition: "Bon état"
+            brand,
+            condition
           })
         })
 
