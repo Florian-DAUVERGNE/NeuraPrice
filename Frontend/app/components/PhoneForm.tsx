@@ -49,22 +49,6 @@ export default function PhoneForm() {
               </SelectContent>
             </Select>
           </motion.div>
-     {  /*   <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
-            <Label htmlFor="condition" className="text-lg">État</Label>
-            <Select value={condition} onValueChange={setCondition} required>
-              <SelectTrigger className="mt-1">
-                <SelectValue placeholder="Sélectionnez l'état" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="neuf">Neuf</SelectItem>
-                <SelectItem value="excellent">Excellent</SelectItem>
-                <SelectItem value="bon">Bon</SelectItem>
-                <SelectItem value="moyen">Moyen</SelectItem>
-                <SelectItem value="mauvais">Mauvais</SelectItem>
-              </SelectContent>
-            </Select>
-          </motion.div>
-*/}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
             <Label htmlFor="condition" className="text-lg">État</Label>
             <Select value={condition} onValueChange={setCondition} required>
