@@ -21,7 +21,7 @@ app = Flask(__name__)
 
 CORS(app)
 
-@app.route('/predict', methods=['POST'])
+@app.route('/predict/phone', methods=['POST'])
 def pred():
     # Parse JSON payload
     data = request.get_json()
