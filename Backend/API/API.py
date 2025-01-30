@@ -114,3 +114,30 @@ def pred2():
     
     return jsonify({"price": str(price_pred_raw)})
 
+@app.route('/predict/realestate', methods=['GET'])
+
+
+def pred3():
+    # Charger le modèle entraîné depuis pickle
+    with open(r'C:\Users\33760\Desktop\NeuraPrice\Backend\models\rf_best_model.pkl', 'rb') as f:
+        rf_best_model = pickle.load(f)
+    dict_for_df = {
+                    'MYYYY_generation': 0,
+                    'price_per_sq_m': 1,
+                    'price_direction': 2,
+                    'isExclusiveness': 3,
+                    'isNew': 4,
+                    'livingArea': 5,
+                    'zipCode': 6,
+                    'deposit_rate': 7,
+                    'lagged_CPI': 8,
+                    'volatility_value': 9,
+                    'City': 10,
+                    'num_rooms_categorical': 11,
+                }
+    # Make a prediction with load model
+    predicted_value_single_row = rf_best_model.predict(dict_for_df)
+
+    # Display preiction
+    print(f"Valeur prédite : {predicted_value_single_row}")
+    return "hello"
