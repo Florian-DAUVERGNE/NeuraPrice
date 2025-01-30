@@ -12,11 +12,11 @@ CORS(app)
 def pred():
 
     # Charger le modèle
-    with open('modele_telephone.pkl', 'rb') as f:
+    with open('..\models\phone\model.pkl', 'rb') as f:
         modele_charge = pickle.load(f)
         
     # Charger les encodeurs
-    with open('encodeurs.pkl', 'rb') as f:
+    with open('..\models\phone\encodings.pkl', 'rb') as f:
         encodeurs = pickle.load(f)
         label_encoder_marque = encodeurs['marque_encoder']
         label_encoder_etat = encodeurs['etat_encoder']
