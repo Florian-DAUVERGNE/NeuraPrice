@@ -27,8 +27,12 @@ def pred():
     data = request.get_json()
 
     # Extract the necessary fields
-    nouvelle_marque = [data.get('brand', 'Apple')]  # Default to 'Apple' if not provided
-    nouvel_etat = [data.get('condition', 'Occasion')]  # Default to 'Occasion' if not provided
+    nouvelle_marque = [data['allParams']['brand']] if 'brand' in data['allParams'] else ['Apple']
+  # Default to 'Apple' if not provided
+
+    nouvel_etat = [data['allParams']['condition']] if 'condition' in data['allParams'] else ['Occasion']
+
+
 
     # Encode the data
     marque_encoded = label_encoder_marque.transform(nouvelle_marque)
@@ -40,8 +44,10 @@ def pred():
     # Predict using the model
     y_pred = modele_charge.predict(X_nouvelles_donnees)
 
+    price = str(y_pred[0])
+
     # Return the prediction result as JSON
-    return jsonify({"price": str(y_pred[0])})
+    return jsonify({"price": price})
 
 
 
