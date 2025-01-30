@@ -4,25 +4,23 @@ import pandas as pd
 from flask_cors import CORS
 import numpy as np
 
-
-# Charger le modèle
-with open('modele_telephone.pkl', 'rb') as f:
-    modele_charge = pickle.load(f)
-    
- 
-
-# Charger les encodeurs
-with open('encodeurs.pkl', 'rb') as f:
-    encodeurs = pickle.load(f)
-    label_encoder_marque = encodeurs['marque_encoder']
-    label_encoder_etat = encodeurs['etat_encoder']
-
 app = Flask(__name__)
 
 CORS(app)
 
 @app.route('/predict/phone', methods=['POST'])
 def pred():
+
+    # Charger le modèle
+    with open('modele_telephone.pkl', 'rb') as f:
+        modele_charge = pickle.load(f)
+        
+    # Charger les encodeurs
+    with open('encodeurs.pkl', 'rb') as f:
+        encodeurs = pickle.load(f)
+        label_encoder_marque = encodeurs['marque_encoder']
+        label_encoder_etat = encodeurs['etat_encoder']
+
     # Parse JSON payload
     data = request.get_json()
 
@@ -31,7 +29,6 @@ def pred():
   # Default to 'Apple' if not provided
 
     nouvel_etat = [data['allParams']['condition']] if 'condition' in data['allParams'] else ['Occasion']
-
 
 
     # Encode the data
