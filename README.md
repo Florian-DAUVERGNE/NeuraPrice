@@ -9,19 +9,11 @@
 <h4 align="center">Une application dédiée à la prédiction de prix basée sur des modèles neuronaux avancés.</h4>
 
 <p align="center">
-  <a href="https://github.com/Florian-DAUVERGNE/NeuraPrice/actions">
-    <img src="https://github.com/Florian-DAUVERGNE/NeuraPrice/workflows/Build/badge.svg" alt="Build Status">
-  </a>
-  <a href="https://github.com/Florian-DAUVERGNE/NeuraPrice/releases">
-    <img src="https://img.shields.io/github/v/release/Florian-DAUVERGNE/NeuraPrice" alt="Release Version">
-  </a>
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
   </a>
 </p>
 
-[![GitHub release date](https://img.shields.io/github/release-date/Abblix/Oidc.Server)](#)
-[![GitH](https://img.shields.io/github/release-date/Abblix/Oidc.Server)](#)
 
 <p align="center">
   <a href="#features">Fonctionnalités</a> •
@@ -32,7 +24,7 @@
   <a href="#licence">Licence</a>
 </p>
 
-![Screenshot](https://raw.githubusercontent.com/Florian-DAUVERGNE/NeuraPrice/master/assets/demo.gif)
+![Screenshot](assets/demo.png)
 
 
 
@@ -79,10 +71,9 @@ pnpm run dev
 
 ## Utilisation
 
-1. Lancez l'application avec la commande précédente.
-2. Importez vos données au format CSV.
+1. Lancez l'application avec les commande précédente.
+2. Répondez aux formulaires.
 3. Visualisez les prédictions de prix et analysez les tendances du marché.
-4. Exportez les résultats si nécessaire.
 
 ## Crédits
 
@@ -92,6 +83,8 @@ Cette application utilise les bibliothèques open-source suivantes :
 - [Pandas](https://pandas.pydata.org/) - Manipulation et analyse de données
 - [Matplotlib](https://matplotlib.org/) - Visualisation de données
 - [Scikit-learn](https://scikit-learn.org/) - Outils d'apprentissage automatique
+- Ressources Images -
+<a href="https://fr.freepik.com/icone/reseau-neuronal_12392217#fromView=search&page=1&position=55&uuid=c622a4c5-bf69-4d82-aecf-40b93c5dbffa">Icône de Freepik</a>
 
 ## Contribution
 
@@ -107,4 +100,3 @@ Les contributions sont les bienvenues !
 
 Ce projet est sous licence MIT - consultez le fichier [LICENSE](LICENSE) pour plus de détails.
 
-<a href="https://fr.freepik.com/icone/reseau-neuronal_12392217#fromView=search&page=1&position=55&uuid=c622a4c5-bf69-4d82-aecf-40b93c5dbffa">Icône de Freepik</a>
