@@ -3,6 +3,8 @@ import pickle
 import pandas as pd
 from flask_cors import CORS
 import numpy as np
+from flasgger import Swagger
+
 
 
 # Charger le modèle
@@ -18,11 +20,42 @@ with open('encodeurs.pkl', 'rb') as f:
     label_encoder_etat = encodeurs['etat_encoder']
 
 app = Flask(__name__)
+swagger = Swagger(app)
+
 
 CORS(app)
 
 @app.route('/predict', methods=['POST'])
 def pred():
+    """
+    Prédiction du prix d'un téléphone
+    ---
+    tags:
+      - Téléphone
+    parameters:
+      - in: body
+        name: body
+        required: true
+        description: Données pour la prédiction
+        schema:
+          type: object
+          properties:
+            brand:
+              type: string
+              example: "Apple"
+            condition:
+              type: string
+              example: "Occasion"
+    responses:
+      200:
+        description: Prix prédit
+        schema:
+          type: object
+          properties:
+            price:
+              type: string
+              example: "500.0"
+    """
     # Parse JSON payload
     data = request.get_json()
 
