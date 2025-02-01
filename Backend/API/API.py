@@ -3,13 +3,47 @@ import pickle
 import pandas as pd
 from flask_cors import CORS
 import numpy as np
+from flasgger import Swagger
+
 
 app = Flask(__name__)
+swagger = Swagger(app)
+
 
 CORS(app)
 
 @app.route('/predict/phone', methods=['POST'])
 def pred():
+  
+      """
+    Prédiction du prix d'un téléphone
+    ---
+    tags:
+      - Téléphone
+    parameters:
+      - in: body
+        name: body
+        required: true
+        description: Données pour la prédiction
+        schema:
+          type: object
+          properties:
+            brand:
+              type: string
+              example: "Apple"
+            condition:
+              type: string
+              example: "Occasion"
+    responses:
+      200:
+        description: Prix prédit
+        schema:
+          type: object
+          properties:
+            price:
+              type: string
+              example: "500.0"
+    """
 
     # Charger le modèle
     with open('..\models\phone\model.pkl', 'rb') as f:
@@ -26,8 +60,8 @@ def pred():
 
     # Extract the necessary fields
     nouvelle_marque = [data['allParams']['brand']] if 'brand' in data['allParams'] else ['Apple']
-  # Default to 'Apple' if not provided
-
+    
+    # Default to 'Apple' if not provided
     nouvel_etat = [data['allParams']['condition']] if 'condition' in data['allParams'] else ['Occasion']
 
 
@@ -45,10 +79,6 @@ def pred():
 
     # Return the prediction result as JSON
     return jsonify({"price": price})
-
-
-
-
 
 @app.route('/predict/laptop', methods=['GET'])
 def pred2():
