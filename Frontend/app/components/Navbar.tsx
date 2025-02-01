@@ -16,15 +16,14 @@ export function Navbar() {
               
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
 </div>
-              {/*<span className="ml-2 text-xl font-bold text-gray-800">Neura Price</span>*/}
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-            
-                <Link
+
+              {pathname !== "/" ? ( 
+                <>
+                                <Link
                 href="/"
-                className={`${
-                  pathname === "/" ? "border-purple-500   text-gray-800" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                } inline-flex items-center px-1 pt-1 border-b-2 text-xl ml-2 font-bold`}
+                className={"border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-xl ml-2 font-bold"}
               >
                 <BrainCircuit className="h-8 w-8 text-purple-500" />
                 Neura Price
@@ -53,7 +52,17 @@ export function Navbar() {
                 } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
               >
                 <Info className="mr-1 h-4 w-4" />À propos
-              </Link>
+              </Link> 
+              </>
+            ) : (
+              <div
+              className={"text-gray-800 inline-flex items-center px-1 pt-1 border-b-2 text-xl ml-2 font-bold"}
+            >
+              <BrainCircuit className="h-8 w-8 text-purple-500 " />
+              
+              Neura Price - Nous vous souhaitons la bienvenue 
+            </div>
+            )}
             </div>
           </div>
         </div>
