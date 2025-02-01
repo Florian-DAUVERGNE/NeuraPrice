@@ -69,11 +69,16 @@ pnpm i
 pnpm run dev
 ```
 
-## Utilisation
+## Utilisation de l'interface
 
-1. Lancez l'application avec les commande précédente.
+1. Lancez l'interface avec les commande précédente.
 2. Répondez aux formulaires.
 3. Visualisez les prédictions de prix et analysez les tendances du marché.
+
+## Utilisation de l'API
+
+1. Lancez l'API avec les commande précédente.
+2. Dirigez vous sur cette url : http://127.0.0.1:5000/apidocs/.
 
 ## Crédits
 
