@@ -13,10 +13,21 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <BrainCircuit className="h-8 w-8 text-purple-500" />
-              <span className="ml-2 text-xl font-bold text-gray-800">Neura Price</span>
+              
+              <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+</div>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+
+              {pathname !== "/" ? ( 
+                <>
+                                <Link
+                href="/"
+                className={"border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-xl ml-2 font-bold"}
+              >
+                <BrainCircuit className="h-8 w-8 text-purple-500" />
+                Neura Price
+              </Link>
             <Link
                 href="/phone"
                 className={`${
@@ -41,7 +52,17 @@ export function Navbar() {
                 } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
               >
                 <Info className="mr-1 h-4 w-4" />À propos
-              </Link>
+              </Link> 
+              </>
+            ) : (
+              <div
+              className={"text-gray-800 inline-flex items-center px-1 pt-1 border-b-2 text-xl ml-2 font-bold"}
+            >
+              <BrainCircuit className="h-8 w-8 text-purple-500 " />
+              
+              Neura Price - Nous vous souhaitons la bienvenue 
+            </div>
+            )}
             </div>
           </div>
         </div>
