@@ -43,7 +43,7 @@ export default function PhoneForm() {
                 <SelectValue placeholder="Sélectionnez la marque" />
               </SelectTrigger>
               <SelectContent>
-                {brands.map((b, index) => (
+                {brands.sort().map((b, index) => (
                   <SelectItem key={index} value={b}>{b}</SelectItem>
                 ))}
               </SelectContent>
