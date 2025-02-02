@@ -24,9 +24,11 @@
   <a href="#licence">Licence</a>
 </p>
 
-![Screenshot](assets/demo.png)
-
-
+<p align="center">
+  <a>
+    <img src="assets/demo.gif" alt="Demo">
+  </a>
+</p>
 
 ## Fonctionnalités
 
@@ -82,14 +84,13 @@ pnpm run dev
 
 ## Crédits
 
-Cette application utilise les bibliothèques open-source suivantes :
+Ce projet utilise les ressources open-source suivantes :
 
 - [TensorFlow](https://www.tensorflow.org/) - Framework pour l'apprentissage profond
 - [Pandas](https://pandas.pydata.org/) - Manipulation et analyse de données
 - [Matplotlib](https://matplotlib.org/) - Visualisation de données
 - [Scikit-learn](https://scikit-learn.org/) - Outils d'apprentissage automatique
-- Ressources Images -
-<a href="https://fr.freepik.com/icone/reseau-neuronal_12392217#fromView=search&page=1&position=55&uuid=c622a4c5-bf69-4d82-aecf-40b93c5dbffa">Icône de Freepik</a>
+- <a href="https://fr.freepik.com/icone/reseau-neuronal_12392217#fromView=search&page=1&position=55&uuid=c622a4c5-bf69-4d82-aecf-40b93c5dbffa">Freepik</a> - Ressources Images
 
 ## Contribution
 
