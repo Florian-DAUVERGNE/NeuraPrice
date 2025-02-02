@@ -2,11 +2,11 @@
 
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { ArrowLeft, Smartphone, Loader2 } from "lucide-react"
+import { ArrowLeft, Smartphone, Loader2,CircleHelp } from "lucide-react"
 
 export default function Result() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null)
@@ -63,13 +63,26 @@ export default function Result() {
 
   const endpoint = searchParams.get("endpoint") // Récupère l'endpoint pour le lien retour
 
+  let icon = <CircleHelp className="mr-2" /> 
+
+  switch(endpoint) { 
+    case "phone": { 
+       icon = <Smartphone className="mr-2" /> 
+       break; 
+    } 
+
+    default: { 
+       break; 
+    } 
+ } 
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 pt-16 flex items-center justify-center p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center flex items-center justify-center">
-            <Smartphone className="mr-2" />
-            Résultat de l'estimation
+            {icon}
+            Résultat de l&apos;estimation
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -81,7 +94,7 @@ export default function Result() {
               className="flex items-center justify-center text-xl text-center"
             >
               <Loader2 className="mr-2 animate-spin" />
-              Chargement de l'estimation...
+              Chargement de l&apos;estimation...
             </motion.div>
           ) : error ? (
             <motion.div
