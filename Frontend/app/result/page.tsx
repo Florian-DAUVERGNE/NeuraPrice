@@ -2,11 +2,11 @@
 
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
+import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import Link from "next/link"
-import { ArrowLeft, Smartphone, Loader2,House,CircleHelp } from "lucide-react"
+import { ArrowLeft, Smartphone, Loader2,CircleHelp } from "lucide-react"
 
 export default function Result() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null)
@@ -82,7 +82,7 @@ export default function Result() {
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center flex items-center justify-center">
             {icon}
-            Résultat de l'estimation
+            Résultat de l&apos;estimation
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -94,7 +94,7 @@ export default function Result() {
               className="flex items-center justify-center text-xl text-center"
             >
               <Loader2 className="mr-2 animate-spin" />
-              Chargement de l'estimation...
+              Chargement de l&apos;estimation...
             </motion.div>
           ) : error ? (
             <motion.div
