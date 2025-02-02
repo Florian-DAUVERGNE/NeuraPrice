@@ -37,9 +37,13 @@ export default function PhoneForm() {
   ];
 
   const handleFormSubmit = (data: PhoneFormData) => {
+    if (!data.brand || !data.condition) {
+      alert("Merci de remplir tous les champs !");
+      return;
+    }
     router.push(`/result?endpoint=${endpoint}&brand=${data.brand}&condition=${data.condition}`);
-    return 0
   };
+  
 
   return  <DynamicForm Icon={Smartphone}  title="Estimez le prix de votre téléphone" fields={fields} onSubmit={handleFormSubmit} />
 }
