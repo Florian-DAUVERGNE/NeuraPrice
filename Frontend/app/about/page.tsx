@@ -13,16 +13,16 @@ export default function About() {
             de votre téléphone portable.
           </p>
           <p>
-            Notre algorithme prend en compte divers facteurs tels que la marque, le modèle, l'âge et l'état de votre
+            Notre algorithme prend en compte divers facteurs tels que la marque, le modèle, l&apos;âge et l&apos;état de votre
             appareil pour fournir une estimation précise de sa valeur sur le marché actuel.
           </p>
           <p>
-            Que vous envisagiez de vendre votre téléphone, de l'échanger ou simplement de connaître sa valeur,
+            Que vous envisagiez de vendre votre téléphone, de l&apos;échanger ou simplement de connaître sa valeur,
             PhonePricer est là pour vous guider.
           </p>
           <p>
             Veuillez noter que les estimations fournies sont à titre indicatif et peuvent varier en fonction des
-            conditions du marché local et d'autres facteurs spécifiques.
+            conditions du marché local et d&apos;autres facteurs spécifiques.
           </p>
         </CardContent>
       </Card>
