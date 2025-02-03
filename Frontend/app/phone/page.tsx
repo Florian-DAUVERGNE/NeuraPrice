@@ -1,5 +1,5 @@
-"use client"
-import { useRouter } from "next/navigation";
+"use client";
+import { useRouter, usePathname } from "next/navigation";
 import DynamicForm from "@/components/basic/DynamicForm";
 import { Smartphone } from "lucide-react";
 import FormField from "@/types/FormField.interface";
@@ -7,10 +7,12 @@ import PhoneFormData from "@/types/PhoneFormData.interface";
 import { Brand } from "@/types/enums/phone/phone-brands.enum";
 import { Conditions } from "@/types/enums/phone/phone-conditions.enum";
 
-const endpoint = "phone";
-
 export default function PhoneForm() {
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Récupère le dernier segment de l'URL comme endpoint
+  const endpoint = pathname?.split("/").filter(Boolean).pop() || "default";
 
   const fields: FormField[] = [
     {
