@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/Florian-DAUVERGNE/NeuraPrice"><img src="assets/logo.png" alt="NeuraPrice Logo" width="200"></a>
+  <img src="assets/logo.png" alt="NeuraPrice Logo" width="200">
   <br>
   NeuraPrice
   <br>
