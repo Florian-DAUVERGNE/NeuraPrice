@@ -80,75 +80,50 @@ def pred():
       # Return the prediction result as JSON
       return jsonify({"price": price})
 
-@app.route('/predict/laptop', methods=['GET'])
-def pred2():
-    
+from flask import Flask, request, jsonify
+import pickle
+import pandas as pd
+import numpy as np
 
-# Charger le modèle entraîné depuis pickle
-    with open('..\models\model_pipelineLaptop.pkl', 'rb') as f:
+app = Flask(__name__)
+
+@app.route('/predict/laptop', methods=['POST'])
+def pred2():
+    # Charger le modèle entraîné depuis pickle
+    with open('../models/model_pipelineLaptop.pkl', 'rb') as f:
         pipe = pickle.load(f)
 
-    # Spécification des caractéristiques du PC
-    comp = 'MSI'  # Remplaçons par les données de votre exemple
-    type = 'Gaming'  # Remplaçons par les données de votre exemple
-    inch = 17.3  # Taille de l'écran en pouces
-    xres = 1920  # Résolution X
-    yres = 1080  # Résolution Y
-    ips = 0  # Indiquer si c'est un écran IPS
-    touchscreen = 0  # Indiquer si l'écran est tactile
-    cpu = 'Intel Core i7'  # Nom du processeur
-    cpufreq = 2.8  # Fréquence du processeur en GHz
-    ram = 32  # Mémoire RAM en GB
-    hdd = 500  # Disque dur en Go
-    ssd = 0  # SSD en Go
-    flash_storage = 0  # Stockage flash en Go
-    gpu = 'Nvidia'  # Carte graphique
-    os = 'Windows 10'  # Système d'exploitation
-    weight = 2.8  # Poids en kg
+    # Récupération des données JSON de la requête
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
 
-    # Créer un dictionnaire avec les données
-    dict_for_df = {
-                    'Company': comp,
-                    'TypeName': type,
-                    'Inches': inch,
-                    'Gpu': gpu,
-                    'Touchscreen': touchscreen,
-                    'Ips': ips,
-                    'X_res': xres,
-                    'Y_res': yres,
-                    'CPU Name': cpu,
-                    'CPU Freq (GHz)': cpufreq,
-                    'RAM (GB)': ram,
-                    'HDD': hdd,
-                    'SSD': ssd,
-                    'Flash Storage': flash_storage,
-                    'OS': os,
-                    'Weight (kg)': weight
-                }
+    # Vérification des clés manquantes
+    required_keys = ['Company', 'TypeName', 'Inches', 'Gpu', 'Touchscreen', 'Ips', 
+                      'X_res', 'Y_res', 'CPU Name', 'CPU Freq (GHz)', 'RAM (GB)', 
+                      'HDD', 'SSD', 'Flash Storage', 'OS', 'Weight (kg)']
+    
+    missing_keys = [key for key in required_keys if key not in data]
+    if missing_keys:
+        return jsonify({"error": f"Missing keys: {', '.join(missing_keys)}"}), 400
 
-    # Convertir le dictionnaire en dataframe
-    df = pd.DataFrame(dict_for_df, index=[0])
+    # Convertir les données en DataFrame
+    df = pd.DataFrame(data, index=[0])
 
     # Vérification du DataFrame
     print("Données pour la prédiction :")
     print(df)
 
-    # Prédiction du prix du laptop en utilisant le modèle
+    # Prédiction du prix du laptop
     price_pred_raw = pipe.predict(df)  # Prédiction du modèle sans appliquer np.exp()
     print(f"Prix brut prédit (sans np.exp): {price_pred_raw}")
 
-    # Si tu as appliqué une transformation log lors de l'entraînement du modèle, inverse-la avec np.exp()
-    price_pred = np.exp(price_pred_raw)[0]  # np.exp() appliqué sur la prédiction du modèle
+    # Si une transformation logarithmique a été appliquée
+    price_pred = np.exp(price_pred_raw)[0] if np.any(price_pred_raw < 0) else price_pred_raw[0]
+    print(f"Prix final prédit (après inversement du log si nécessaire): {price_pred}")
 
-    print(f"Prix final prédit (après inversement du log): {price_pred}")
-
-        
-           
-    
-    return jsonify({"price": str(price_pred_raw)})
-
-
-
+    # Retourner la prédiction sous forme de JSON
+    return jsonify({"price": float(price_pred)})
 
 import json
 import random
