@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import { useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
-import { motion } from "motion/react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from "next/link"
-import { ArrowLeft, Smartphone, Loader2,CircleHelp } from "lucide-react"
+import React, { Suspense, useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { motion } from "motion/react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
+import { ArrowLeft, Smartphone, Loader2, CircleHelp } from "lucide-react";
 
-export default function Result() {
-  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null) // État pour gérer les erreurs
-  const searchParams = useSearchParams()
+function ResultContent() {
+  const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const fetchPrice = async () => {
-      const allParams: { [key: string]: string } = {}
+      const allParams: { [key: string]: string } = {};
 
       searchParams.forEach((value, key) => {
-        allParams[key] = value
-      })
+        allParams[key] = value;
+      });
 
-      const endpoint = allParams["endpoint"]
+      const endpoint = allParams["endpoint"];
       if (!endpoint) {
-        setError("Le paramètre 'endpoint' est manquant.")
-        setIsLoading(false)
-        return
+        setError("Le paramètre 'endpoint' est manquant.");
+        setIsLoading(false);
+        return;
       }
 
-      delete allParams["endpoint"]
+      delete allParams["endpoint"];
 
       try {
         const response = await fetch(`http://localhost:5000/predict/${endpoint}`, {
@@ -38,43 +38,40 @@ export default function Result() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ allParams }),
-        })
+        });
 
         if (!response.ok) {
-          throw new Error("Erreur lors de la requête")
+          throw new Error("Erreur lors de la requête");
         }
 
-        const data = await response.json()
+        const data = await response.json();
         if (data.price) {
-          setEstimatedPrice(Number(data.price))
+          setEstimatedPrice(Number(data.price));
         } else {
-          setEstimatedPrice(null)
+          setEstimatedPrice(null);
         }
       } catch (error) {
-        setError(error instanceof Error ? error.message : "Une erreur inconnue s'est produite.")
-        setEstimatedPrice(null)
+        setError(error instanceof Error ? error.message : "Une erreur inconnue s'est produite.");
+        setEstimatedPrice(null);
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    fetchPrice()
-  }, [searchParams])
+    fetchPrice();
+  }, [searchParams]);
 
-  const endpoint = searchParams.get("endpoint") // Récupère l'endpoint pour le lien retour
+  const endpoint = searchParams.get("endpoint");
+  let icon = <CircleHelp className="mr-2" />;
 
-  let icon = <CircleHelp className="mr-2" /> 
+  switch (endpoint) {
+    case "phone":
+      icon = <Smartphone className="mr-2" />;
+      break;
 
-  switch(endpoint) { 
-    case "phone": { 
-       icon = <Smartphone className="mr-2" /> 
-       break; 
-    } 
-
-    default: { 
-       break; 
-    } 
- } 
+    default:
+      break;
+  }
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 pt-16 flex items-center justify-center p-4">
@@ -123,7 +120,7 @@ export default function Result() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Link href={`/${endpoint || ''}`}>
+            <Link href={`/${endpoint || ""}`}>
               <Button className="w-full">
                 <ArrowLeft className="mr-2" />
                 Retour au formulaire
@@ -133,5 +130,13 @@ export default function Result() {
         </CardContent>
       </Card>
     </main>
-  )
+  );
+}
+
+export default function Result() {
+  return (
+    <Suspense fallback={<div>Chargement de la page...</div>}>
+      <ResultContent />
+    </Suspense>
+  );
 }
