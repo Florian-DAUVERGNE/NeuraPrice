@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LucideIcon,DollarSign } from "lucide-react";
-import FormField from "./FormField.interface"
+import FormField from "@/types/FormField.interface"
 
 // Typage des props du composant
 interface DynamicFormProps<T> {
