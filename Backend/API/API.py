@@ -169,7 +169,7 @@ with open("../models/rf_best_model.pkl", "rb") as f:
     rf_best_model = dill.load(f)
 
 # Définition des caractéristiques du modèle
-numeric_features = ['livingArea', 'zipCode', 'deposit_rate', 'lagged_CPI', 'volatility_value', 'month', 'year']
+numeric_features = ['livingArea', 'zipCode']
 categorical_features = ['price_direction', 'num_rooms_categorical']
 categorical_ordinal_features = ['City']
 bool_features = ['isExclusiveness', 'isNew']
@@ -197,7 +197,7 @@ def get_categories():
 @app.route('/predict/realestate', methods=['POST'])
 def pred3():
     try:
-        data = request.get_json()
+        data = request.get_json()["allParams"]
 
         # Si aucune donnée n'est envoyée, générer des valeurs aléatoires
         if not data:
@@ -220,6 +220,12 @@ def pred3():
 
         print(f"JSON reçu : {json.dumps(data, indent=4)}")  # Ajout d'un print pour vérifier ce qui est reçu
 
+        data['deposit_rate'] = 0.02
+        data['lagged_CPI'] = 2.5
+        data['volatility_value'] = 1.2
+        data['month'] = 6
+        data['year'] = 2024
+
         # Vérification des clés manquantes
         expected_keys = numeric_features + categorical_features + categorical_ordinal_features + bool_features
         missing_keys = [key for key in expected_keys if key not in data]
@@ -233,9 +239,11 @@ def pred3():
         # Convertir en DataFrame
         df_input = pd.DataFrame([data])
 
+        print(data)
+
         # Appliquer le préprocesseur (seulement transform, pas fit)
         df_input_preprocessed = preprocessor.transform(df_input)
-        
+
         df_input_selected = poly_select_pipeline_real_estate.transform(df_input_preprocessed)
 
         # Faire la prédiction
