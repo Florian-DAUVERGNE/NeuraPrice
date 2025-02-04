@@ -31,11 +31,7 @@ export default function RealEstateForm() {
     price_per_sq_m: number;
     livingArea: number;
     zipCode: number;
-    deposit_rate: number;
     lagged_CPI: number;
-    volatility_value: number;
-    month: number;
-    year: number;
   }
 
   const fields: FormField[] = [
@@ -95,12 +91,15 @@ export default function RealEstateForm() {
       //options: zipCode,
       required: true,
     },
-  
   ];
 
   const handleFormSubmit = (data: RealEstateFormData) => {
-    if (!data.price_direction || !data.City || !data.num_rooms_categorical || !data.isExclusiveness || !data.isNew || !data.livingArea || !data.zipCode || !data.deposit_rate || !data.lagged_CPI || !data.volatility_value || !data.month || !data.year)  {
-      alert("Merci de remplir tous les champs !");
+    const missingFields = fields
+      .filter(field => field.required && !data[field.name as keyof RealEstateFormData]) 
+      .map(field => field.label); 
+  
+    if (missingFields.length > 0) {
+      alert(`Merci de remplir les champs suivants : ${missingFields.join(", ")}`);
       return;
     }
     // Créer dynamiquement la chaîne de paramètres pour l'URL
