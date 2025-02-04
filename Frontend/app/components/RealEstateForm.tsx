@@ -95,46 +95,7 @@ export default function RealEstateForm() {
       //options: zipCode,
       required: true,
     },
-    {
-      name: "deposit_rate",
-      label: "taux de dépôt des banques à la banque centrale",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: deposit_rate,
-      required: true,
-    },
-    {
-      name: "indice des prix à la consommation",
-      label: "tendance des prix",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: lagged_CPI,
-      required: true,
-    },
-    {
-      name: "volatility_value",
-      label: "tendance des prix",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: volatility_value,
-      required: true,
-    },
-    {
-      name: "month",
-      label: "mois en cours (nombre)",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: month,
-      required: true,
-    },
-    {
-      name: "year",
-      label: "Année en cours (nombre)",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: year,
-      required: true,
-    }
+  
   ];
 
   const handleFormSubmit = (data: RealEstateFormData) => {
