@@ -31,11 +31,7 @@ export default function RealEstateForm() {
     price_per_sq_m: number;
     livingArea: number;
     zipCode: number;
-    deposit_rate: number;
     lagged_CPI: number;
-    volatility_value: number;
-    month: number;
-    year: number;
   }
 
   const fields: FormField[] = [
@@ -95,51 +91,15 @@ export default function RealEstateForm() {
       //options: zipCode,
       required: true,
     },
-    {
-      name: "deposit_rate",
-      label: "taux de dépôt des banques à la banque centrale",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: deposit_rate,
-      required: true,
-    },
-    {
-      name: "indice des prix à la consommation",
-      label: "tendance des prix",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: lagged_CPI,
-      required: true,
-    },
-    {
-      name: "volatility_value",
-      label: "tendance des prix",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: volatility_value,
-      required: true,
-    },
-    {
-      name: "month",
-      label: "mois en cours (nombre)",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: month,
-      required: true,
-    },
-    {
-      name: "year",
-      label: "Année en cours (nombre)",
-      type: "input",
-      placeholder: "Sélectionnez l'emplacement",
-      //options: year,
-      required: true,
-    }
   ];
 
   const handleFormSubmit = (data: RealEstateFormData) => {
-    if (!data.price_direction || !data.City || !data.num_rooms_categorical || !data.isExclusiveness || !data.isNew || !data.livingArea || !data.zipCode || !data.deposit_rate || !data.lagged_CPI || !data.volatility_value || !data.month || !data.year)  {
-      alert("Merci de remplir tous les champs !");
+    const missingFields = fields
+      .filter(field => field.required && !data[field.name as keyof RealEstateFormData]) 
+      .map(field => field.label); 
+  
+    if (missingFields.length > 0) {
+      alert(`Merci de remplir les champs suivants : ${missingFields.join(", ")}`);
       return;
     }
     // Créer dynamiquement la chaîne de paramètres pour l'URL
