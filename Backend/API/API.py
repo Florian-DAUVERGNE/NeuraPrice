@@ -169,7 +169,7 @@ with open("../models/rf_best_model.pkl", "rb") as f:
     rf_best_model = dill.load(f)
 
 # Définition des caractéristiques du modèle
-numeric_features = ['price_per_sq_m', 'livingArea', 'zipCode', 'deposit_rate', 'lagged_CPI', 'volatility_value', 'month', 'year']
+numeric_features = ['livingArea', 'zipCode', 'deposit_rate', 'lagged_CPI', 'volatility_value', 'month', 'year']
 categorical_features = ['price_direction', 'num_rooms_categorical']
 categorical_ordinal_features = ['City']
 bool_features = ['isExclusiveness', 'isNew']
