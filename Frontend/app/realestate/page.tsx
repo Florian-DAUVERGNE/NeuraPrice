@@ -1,10 +1,100 @@
-import RealEstateForm from "../components/RealEstateForm"
+"use client"
+import { useRouter, usePathname } from "next/navigation";
+import DynamicForm from "@/components/basic/DynamicForm";
+import { House } from "lucide-react";
+import FormField from "@/types/FormField.interface"
+import RealEstateFormData from "@/types/RealestateFormData.interface"
+import { City, NumRoomsCategorical, PriceDirection,IsExclusiveness,IsNew } from "@/types/enums/phone/realestate.enum";
 
-export default function Home() {
-  return (
-    <main className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 pt-16 flex items-center justify-center p-4">
-      <RealEstateForm />
-    </main>
-  )
+export default function RealEstateForm() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  // Récupère le dernier segment de l'URL comme endpoint
+  const endpoint = pathname?.split("/").filter(Boolean).pop() || "default";
+
+  const fields: FormField[] = [
+    {
+      name: "price_direction",
+      label: "évolution du prix",
+      type: "select",
+      placeholder: "Sélectionnez l'emplacement",
+      options: Object.values(PriceDirection),
+      required: true,
+    },
+    {
+      name: "City",
+      label: "Ville du bien",
+      type: "select",
+      placeholder: "Sélectionnez l'emplacement",
+      options: Object.values(City),
+      required: true,
+    },
+    {
+      name: "num_rooms_categorical",
+      label: "estimation catégorielle du nombre de chambre",
+      type: "select",
+      placeholder: "Sélectionnez l'emplacement",
+      options: Object.values(NumRoomsCategorical),
+      required: true,
+    },
+    {
+      name: "isExclusiveness",
+      label: "Le bien est-il exclusif ?",
+      type: "select",
+      placeholder: "Sélectionnez l'emplacement",
+      options: Object.values(IsExclusiveness),
+      required: true,
+    },
+    {
+      name: "isNew",
+      label: "L'annonce est-elle récente ?",
+      type: "select",
+      placeholder: "Sélectionnez l'emplacement",
+      options: Object.values(IsNew),
+      required: true,
+    },
+    {
+      name: "livingArea",
+      label: "Surface habitable du bien",
+      type: "input",
+      placeholder: "Sélectionnez l'emplacement",
+      // options: livingArea,
+      required: true,
+    },
+    {
+      name: "zipCode",
+      label: "Code postal du bien",
+      type: "input",
+      placeholder: "Sélectionnez l'emplacement",
+      //options: zipCode,
+      required: true,
+    },
+  ];
+
+  const handleFormSubmit = (data: RealEstateFormData) => {
+    const missingFields = fields
+      .filter(field => field.required && !data[field.name as keyof RealEstateFormData]) 
+      .map(field => field.label); 
+  
+    if (missingFields.length > 0) {
+      alert(`Merci de remplir les champs suivants : ${missingFields.join(", ")}`);
+      return;
+    }
+    // Créer dynamiquement la chaîne de paramètres pour l'URL
+    const queryParams = new URLSearchParams();
+    Object.entries(data).forEach(([key, value]) => {
+      if (value) {
+        queryParams.append(key, value);
+      }
+    });
+  
+    // Rediriger vers l'URL avec les paramètres
+    router.push(`/result?endpoint=${endpoint}&${queryParams.toString()}`);
+  };
+  
+
+  return  <main className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 pt-16 flex items-center justify-center p-4">
+<DynamicForm Icon={House}  title="Estimez le prix de votre immobillier" fields={fields} onSubmit={handleFormSubmit} /></main>
 }
 

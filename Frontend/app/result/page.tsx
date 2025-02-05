@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowLeft, Smartphone, Loader2, CircleHelp } from "lucide-react";
+import { ArrowLeft, Smartphone, Loader2, CircleHelp, House } from "lucide-react";
 
 function ResultContent() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
@@ -19,8 +19,18 @@ function ResultContent() {
       const allParams: { [key: string]: string } = {};
 
       searchParams.forEach((value, key) => {
+        if( value.toLocaleUpperCase() == "OUI" ){
+          value = "true"
+        }
+
+        if( value.toLocaleUpperCase() ==  "NON" ){
+          value = "false"
+        }
+
         allParams[key] = value;
       });
+
+      
 
       const endpoint = allParams["endpoint"];
       if (!endpoint) {
@@ -67,6 +77,10 @@ function ResultContent() {
   switch (endpoint) {
     case "phone":
       icon = <Smartphone className="mr-2" />;
+      break;
+
+    case "realestate":
+      icon = <House className="mr-2" />;
       break;
 
     default:
