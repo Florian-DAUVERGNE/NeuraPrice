@@ -90,7 +90,7 @@ def pred2():
         pipe = pickle.load(f)
 
     # Récupération des données JSON de la requête
-    data = request.get_json()
+    data = request.get_json()["allParams"]
     if not data:
         return jsonify({"error": "No data provided"}), 400
 
@@ -102,6 +102,14 @@ def pred2():
     missing_keys = [key for key in required_keys if key not in data]
     if missing_keys:
         return jsonify({"error": f"Missing keys: {', '.join(missing_keys)}"}), 400
+
+    # Parcourir les clés de `data` et remplacer les valeurs "true" par 1
+    for key, value in data.items():
+        if isinstance(value, str) and value.lower() == "true":
+            data[key] = 1
+        
+        if isinstance(value, str) and value.lower() == "false":
+            data[key] = 0
 
     # Convertir les données en DataFrame
     df = pd.DataFrame(data, index=[0])
@@ -120,6 +128,7 @@ def pred2():
 
     # Retourner la prédiction sous forme de JSON
     return jsonify({"price": float(price_pred)})
+
 
 import json
 import random
