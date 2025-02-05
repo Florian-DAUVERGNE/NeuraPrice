@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Home, Phone, Info,BrainCircuit } from "lucide-react"
+import { Home, Phone, Info,BrainCircuit, Laptop } from "lucide-react"
 import { usePathname } from "next/navigation"
 
 export function Navbar() {
@@ -44,6 +44,15 @@ export function Navbar() {
               >
                 <Home className="mr-1 h-4 w-4" />
                 Immobilier
+              </Link>
+              <Link
+                href="/laptop"
+                className={`${
+                  pathname === "/laptop" ? "border-purple-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+              >
+                <Laptop className="mr-1 h-4 w-4" />
+                Ordinateur
               </Link>
               <Link
                 href="/about"
