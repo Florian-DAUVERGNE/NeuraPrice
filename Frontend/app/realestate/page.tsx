@@ -1,24 +1,10 @@
 "use client"
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import DynamicForm from "@/components/basic/DynamicForm";
 import { House } from "lucide-react";
 import FormField from "@/types/FormField.interface"
 import RealEstateFormData from "@/types/RealestateFormData.interface"
-
-  const price_direction = ['Stayed the same', 'Decreased', 'Increased']
-  const City = ["Marseille", "Nantes", "Bordeaux", "Lyon", "Toulouse", "Asnieres-sur-Seine",
-  "Boulogne-Billancourt", "Aix-en-Provence", "Toulon", "Perpignan", "Cergy-Pontoise",
-  "Brest", "Rouen", "Montpellier", "Metz", "Avignon", "Nanterre", "Angers",
-  "Argenteuil", "Caen", "Paris", "Amiens", "Orleans", "Grenoble",
-  "Saint-Quentin-en-Yvelines", "Clermont-Ferrand", "Lille", "Tours", "Limoges",
-  "Strasbourg", "Courbevoie", "Saint-Etienne", "Versailles", "Reims", "Nancy",
-  "Nimes", "Dijon", "Besancon", "Le Havre", "Poitiers", "Saint-Denis",
-  "Mulhouse", "Rennes", "Le Mans", "Roubaix", "Tourcoing"]
-  const num_rooms_categorical = ['small', 'medium', 'large']
-  const isExclusiveness = [false, true]
-  const isNew = [false, true]
-
-const endpoint = "realestate"
+import { City, NumRoomsCategorical, PriceDirection,IsExclusiveness,IsNew } from "@/types/enums/phone/realestate.enum";
 
 export default function RealEstateForm() {
   const router = useRouter();
@@ -29,7 +15,7 @@ export default function RealEstateForm() {
       label: "évolution du prix",
       type: "select",
       placeholder: "Sélectionnez l'emplacement",
-      options: price_direction,
+      options: Object.values(PriceDirection),
       required: true,
     },
     {
@@ -37,7 +23,7 @@ export default function RealEstateForm() {
       label: "Ville du bien",
       type: "select",
       placeholder: "Sélectionnez l'emplacement",
-      options: City,
+      options: Object.values(City),
       required: true,
     },
     {
@@ -45,7 +31,7 @@ export default function RealEstateForm() {
       label: "estimation catégorielle du nombre de chambre",
       type: "select",
       placeholder: "Sélectionnez l'emplacement",
-      options: num_rooms_categorical,
+      options: Object.values(NumRoomsCategorical),
       required: true,
     },
     {
@@ -53,7 +39,7 @@ export default function RealEstateForm() {
       label: "Le bien est-il exclusif ?",
       type: "select",
       placeholder: "Sélectionnez l'emplacement",
-      options: isExclusiveness,
+      options: Object.values(IsExclusiveness),
       required: true,
     },
     {
@@ -61,7 +47,7 @@ export default function RealEstateForm() {
       label: "L'annonce est-elle récente ?",
       type: "select",
       placeholder: "Sélectionnez l'emplacement",
-      options: isNew,
+      options: Object.values(IsNew),
       required: true,
     },
     {
