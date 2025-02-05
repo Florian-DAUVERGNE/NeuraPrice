@@ -4,8 +4,7 @@ import DynamicForm from "@/components/basic/DynamicForm";
 import { Smartphone } from "lucide-react";
 import FormField from "@/types/FormField.interface";
 import PhoneFormData from "@/types/PhoneFormData.interface";
-import { Brand } from "@/types/enums/phone/phone-brands.enum";
-import { Conditions } from "@/types/enums/phone/phone-conditions.enum";
+import { Brand,Conditions } from "@/types/enums/phone/phone.enum";
 
 export default function PhoneForm() {
   const router = useRouter();

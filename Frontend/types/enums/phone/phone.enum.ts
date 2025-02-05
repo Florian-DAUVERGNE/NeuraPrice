@@ -134,3 +134,8 @@ export enum Brand {
     LEAGOO = "LEAGOO",
     Nomi = "Nomi",
   }
+export enum Conditions {
+  Neuf = "Neuf", 
+  BonEtat = "Bon état", 
+  Occasion ="Occasion"
+}
