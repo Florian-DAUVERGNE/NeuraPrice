@@ -5,10 +5,8 @@ from flask_cors import CORS
 import numpy as np
 from flasgger import Swagger
 
-
 app = Flask(__name__)
 swagger = Swagger(app)
-
 
 CORS(app)
 
@@ -84,8 +82,6 @@ from flask import Flask, request, jsonify
 import pickle
 import pandas as pd
 import numpy as np
-
-app = Flask(__name__)
 
 @app.route('/predict/laptop', methods=['POST'])
 def pred2():
