@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowLeft, Smartphone, Loader2, CircleHelp, House } from "lucide-react";
+import { ArrowLeft, Smartphone, Loader2, CircleHelp, House,Laptop } from "lucide-react";
 
 function ResultContent() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
@@ -83,6 +83,10 @@ function ResultContent() {
       icon = <House className="mr-2" />;
       break;
 
+    case "laptop":
+      icon = <Laptop className="mr-2" />;
+      break;
+
     default:
       break;
   }
@@ -123,7 +127,7 @@ function ResultContent() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <p className="text-xl mb-2">Le prix estimé de votre téléphone est :</p>
+              <p className="text-xl mb-2">Le prix estimé est :</p>
               <p className="text-4xl font-bold text-green-600">{estimatedPrice.toFixed(2)} €</p>
             </motion.div>
           ) : (
