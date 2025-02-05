@@ -42,8 +42,16 @@ export default function PhoneForm() {
       alert(`Merci de remplir les champs suivants : ${missingFields.join(", ")}`);
       return;
     }
-
-    router.push(`/result?endpoint=${endpoint}&brand=${data.brand}&condition=${data.condition}`);
+    // Créer dynamiquement la chaîne de paramètres pour l'URL
+    const queryParams = new URLSearchParams();
+    Object.entries(data).forEach(([key, value]) => {
+      if (value) {
+        queryParams.append(key, value);
+      }
+    });
+  
+    // Rediriger vers l'URL avec les paramètres
+    router.push(`/result?endpoint=${endpoint}&${queryParams.toString()}`);
   };
 
   return (
