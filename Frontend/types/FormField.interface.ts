@@ -3,6 +3,6 @@ export default interface FormField {
   label: string;
   type: string;
   placeholder: string;
-  options?: string[] | boolean[];
+  options?: string[];
   required: boolean;
 }

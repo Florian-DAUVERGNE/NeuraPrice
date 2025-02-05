@@ -19,8 +19,18 @@ function ResultContent() {
       const allParams: { [key: string]: string } = {};
 
       searchParams.forEach((value, key) => {
+        if( value.toLocaleUpperCase() == "OUI" ){
+          value = "true"
+        }
+
+        if( value.toLocaleUpperCase() ==  "NON" ){
+          value = "false"
+        }
+
         allParams[key] = value;
       });
+
+      
 
       const endpoint = allParams["endpoint"];
       if (!endpoint) {
