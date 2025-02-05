@@ -8,6 +8,10 @@ import { City, NumRoomsCategorical, PriceDirection,IsExclusiveness,IsNew } from 
 
 export default function RealEstateForm() {
   const router = useRouter();
+  const pathname = usePathname();
+
+  // Récupère le dernier segment de l'URL comme endpoint
+  const endpoint = pathname?.split("/").filter(Boolean).pop() || "default";
 
   const fields: FormField[] = [
     {
