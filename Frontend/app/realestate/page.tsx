@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import DynamicForm from "@/components/basic/DynamicForm";
 import { House } from "lucide-react";
 import FormField from "@/types/FormField.interface"
+import RealEstateFormData from "@/types/RealestateFormData.interface"
 
   const price_direction = ['Stayed the same', 'Decreased', 'Increased']
   const City = ["Marseille", "Nantes", "Bordeaux", "Lyon", "Toulouse", "Asnieres-sur-Seine",
@@ -21,18 +22,6 @@ const endpoint = "realestate"
 
 export default function RealEstateForm() {
   const router = useRouter();
-
-  interface RealEstateFormData {
-    price_direction: string;
-    City: string;
-    num_rooms_categorical: string;
-    isExclusiveness: boolean;
-    isNew: boolean;
-    price_per_sq_m: number;
-    livingArea: number;
-    zipCode: number;
-    lagged_CPI: number;
-  }
 
   const fields: FormField[] = [
     {
