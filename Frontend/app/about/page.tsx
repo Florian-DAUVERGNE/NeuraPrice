@@ -47,7 +47,7 @@ export default function About() {
     <main className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 pt-16 flex flex-col items-center justify-center p-4 space-y-8">
       <Card className="w-full max-w-2xl">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">Nos profils GitHub</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Qui sommes-nous ?</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {loading ? (
