@@ -1,5 +1,5 @@
 "use client"
-import { Phone, Home, FileText } from "lucide-react"
+import { Phone, Home, FileText, Laptop } from "lucide-react"
 import HomePageCard from "@/components/basic/HomePageCard";
 
 export default function FormCards() {
@@ -11,10 +11,14 @@ export default function FormCards() {
           <HomePageCard content="Remplissez notre formulaire pour obtenir une estimation précise de la valeur de votre téléphone." description="Évaluez le prix de votre téléphone" title="Téléphone" href="/phone" Icon={Phone}></HomePageCard>
           
           <HomePageCard content="Découvrez la valeur de votre bien immobilier avec notre outil d&apos;estimation." description="Estimez votre bien immobilier" title="Immobilier" href="/realestate" Icon={Home}></HomePageCard>
+
+          <HomePageCard content="" description="" title="" href="/laptop" Icon={Laptop}></HomePageCard>
           
           <HomePageCard content="Accédez à nos autres services d&apos;estimation et d&apos;évaluation." description="Autres services d&apos;évaluation" title="Autre Estimation" href="/" Icon={FileText}></HomePageCard>
 
           <HomePageCard content="Accédez à nos autres services d&apos;estimation et d&apos;évaluation." description="Autres services d&apos;évaluation" title="Autre Estimation" href="/" Icon={FileText}></HomePageCard>
+
+          
         </div>
       </div>
     </div>
