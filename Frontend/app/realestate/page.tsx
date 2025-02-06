@@ -4,7 +4,7 @@ import DynamicForm from "@/components/basic/DynamicForm";
 import { House } from "lucide-react";
 import FormField from "@/types/FormField.interface"
 import RealEstateFormData from "@/types/RealestateFormData.interface"
-import { City, NumRoomsCategorical, PriceDirection,IsExclusiveness,IsNew } from "@/types/enums/phone/realestate.enum";
+import { City, NumRoomsCategorical, PriceDirection,IsExclusiveness,IsNew } from "@/types/enums/realestate.enum";
 
 export default function RealEstateForm() {
   const router = useRouter();
