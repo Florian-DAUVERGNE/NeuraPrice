@@ -5,13 +5,13 @@ import dill
 import pandas as pd
 
 # Charger les modèles
-with open("../models/preprocessor_real_estate.pkl", "rb") as f:
+with open("../models/realestate/preprocessor_real_estate.pkl", "rb") as f:
     preprocessor = dill.load(f)
 
-with open("../models/poly_select_pipeline_real_estate.pkl", "rb") as f:
+with open("../models/realestate/poly_select_pipeline_real_estate.pkl", "rb") as f:
     poly_select_pipeline_real_estate = dill.load(f)
 
-with open("../models/rf_best_model.pkl", "rb") as f:
+with open("../models/realestate/rf_best_model.pkl", "rb") as f:
     rf_best_model = dill.load(f)
 
 # Définition des caractéristiques du modèle

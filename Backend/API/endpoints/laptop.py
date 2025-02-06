@@ -5,7 +5,7 @@ import numpy as np
 
 def predict():
     # Charger le modèle entraîné depuis pickle
-    with open('../models/model_pipelineLaptop.pkl', 'rb') as f:
+    with open('../models/laptop/model_pipelineLaptop.pkl', 'rb') as f:
         pipe = pickle.load(f)
 
     # Récupération des données JSON de la requête
