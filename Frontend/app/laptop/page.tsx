@@ -1,8 +1,8 @@
 "use client";
-import { useRouter, usePathname } from "next/navigation";
 import DynamicForm from "@/components/basic/DynamicForm";
 import { Laptop } from "lucide-react";
 import FormField from "@/types/FormField.interface";
+import { useFormSubmit } from "@/hooks/useFormSubmit";
 //import PhoneFormData from "@/types/PhoneFormData.interface";
 /*import { Brand,Conditions } from "@/types/enums/phone/phone.enum";
 
@@ -44,11 +44,7 @@ interface LaptopSpecs {
 }
 
 export default function LaptopForm() {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  // Récupère le dernier segment de l'URL comme endpoint
-  const endpoint = pathname?.split("/").filter(Boolean).pop() || "default";
+  const { handleFormSubmit } = useFormSubmit();
 
   const fields: FormField[] = [
     {
@@ -172,34 +168,13 @@ export default function LaptopForm() {
     },
   ];
 
-  const handleFormSubmit = (data: LaptopSpecs) => {
-    const missingFields = fields
-      .filter((field) => field.required && !data[field.name as keyof LaptopSpecs])
-      .map((field) => field.label);
-
-    if (missingFields.length > 0) {
-      alert(`Merci de remplir les champs suivants : ${missingFields.join(", ")}`);
-      return;
-    }
-    // Créer dynamiquement la chaîne de paramètres pour l'URL
-    const queryParams = new URLSearchParams();
-    Object.entries(data).forEach(([key, value]) => {
-      if (value) {
-        queryParams.append(key, value);
-      }
-    });
-  
-    // Rediriger vers l'URL avec les paramètres
-    router.push(`/result?endpoint=${endpoint}&${queryParams.toString()}`);
-  };
-
   return (
     <main className="min-h-screen bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 pt-16 flex items-center justify-center p-4">
       <DynamicForm
         Icon={Laptop}
         title="Estimez le prix de votre ordinateur"
         fields={fields}
-        onSubmit={handleFormSubmit}
+        onSubmit={(data: LaptopSpecs) => handleFormSubmit(data, fields)}
       />
     </main>
   );
