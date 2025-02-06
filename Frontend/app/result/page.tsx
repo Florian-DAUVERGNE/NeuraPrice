@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
-import { ArrowLeft, Smartphone, Loader2, CircleHelp, House,Laptop } from "lucide-react";
+import { ArrowLeft, Smartphone, Loader2, CircleHelp, House,Laptop, Car } from "lucide-react";
 
 function ResultContent() {
   const [estimatedPrice, setEstimatedPrice] = useState<number | null>(null);
@@ -86,6 +86,11 @@ function ResultContent() {
     case "laptop":
       icon = <Laptop className="mr-2" />;
       break;
+
+    case "car":
+      icon = <Car className="mr-2" />;
+      break;
+
 
     default:
       break;
