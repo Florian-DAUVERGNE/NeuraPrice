@@ -21,6 +21,9 @@ jobs:
 
       - name: Naviguer dans le répertoire Backend/API
         run: cd Backend/API
+        
+      - name : check
+        run: ls
 
       - name: Set up Python version
         uses: actions/setup-python@v5
