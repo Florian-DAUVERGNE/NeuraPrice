@@ -42,7 +42,7 @@ function ResultContent() {
       delete allParams["endpoint"];
 
       //const url = `http://localhost:5000/predict/${endpoint}`;
-      const url = `https://neurapriceapiv2neuraprice.azurewebsites.net/${endpoint}`;
+      const url = `https://neurapriceapiv2neuraprice.azurewebsites.net/predict/${endpoint}`;
 
       try {
         const response = await fetch(url, {
