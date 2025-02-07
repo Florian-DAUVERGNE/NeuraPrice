@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Naviguer dans le répertoire Backend/API
-        run: cd Backend/API
+        run: cd Backend
         
       - name : check
         run: ls
