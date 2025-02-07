@@ -19,6 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Naviguer dans le répertoire Backend/API
+        run: cd Backend/API
+
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
