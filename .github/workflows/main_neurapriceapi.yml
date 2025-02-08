@@ -4,8 +4,8 @@ on:
   push:
     branches:
       - main
-    #paths:
-     # - 'Backend/API/**'  # Déclencher uniquement si des modifications sont faites dans Backend/API
+    paths:
+      - 'Backend/API/**'  # Déclencher uniquement si des modifications sont faites dans Backend/API
   workflow_dispatch:
 
 jobs:
