@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 from flask_cors import CORS
 from flasgger import Swagger
 
@@ -7,6 +7,12 @@ from endpoints import phone, laptop, realestate
 app = Flask(__name__)
 swagger = Swagger(app)
 CORS(app)
+
+@app.route('/')
+def api():
+    return redirect("/apidocs", code=302)
+
+
 
 # Routes pour les téléphones
 @app.route('/predict/phone', methods=['POST'])
