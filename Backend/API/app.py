@@ -2,7 +2,7 @@ from flask import Flask, redirect
 from flask_cors import CORS
 from flasgger import Swagger
 
-from endpoints import phone, laptop, realestate
+from endpoints import phone, laptop, realestate, cars
 
 app = Flask(__name__)
 swagger = Swagger(app)
@@ -214,6 +214,100 @@ def predict_realestate():
               type: string
     """
     return realestate.predict()
+
+@app.route('/predict/cars', methods=['POST'])
+def predict_cars():
+    """
+    Prédiction du prix de voitures
+    ---
+    tags:
+      - Cars
+    parameters:
+      - in: body
+        name: body
+        required: true
+        description: Données pour la prédiction
+        schema:
+          type: object
+          properties:
+            allParams:
+              type: object
+              required:
+                - Marque
+                - Modele
+                - Annee_modele
+                - Km
+                - Carburant
+                - Boite_vitesse
+                - Puissance
+                - Critere_air
+                - Couleur
+                - Type_vehicule
+              properties:
+                Marque:
+                  type: string
+                  example: "Toyota"
+                Modele:
+                  type: string
+                  example: "Capture"
+                Annee_modele:
+                  type: integer
+                  example: 2019
+                Km:
+                  type: integer
+                  example: 165000
+                Carburant:
+                  type: string
+                  example: "Diesel"
+                  enum: ["Essence", "Diesel", "Hybride", "Electrique", "Gaz"]
+                Boite_vitesse:
+                  type: string
+                  example: "Manuelle"
+                  enum: ["Manuelle", "Automatique"]
+                Critere_air:
+                  type: string
+                  example: "Euro3"
+                Puissance:
+                  type: integer
+                  example: 130
+                Couleur:
+                  type: string
+                  example: "Bleu"
+                Type_vehicule:
+                  type: string
+                  example: "Berline"
+                  enum: ["Berline", "Crossover", "Break", "SUV", "Monospace"]
+                
+    responses:
+      200:
+        description: Prix prédit
+        schema:
+          type: object
+          properties:
+            price:
+              type: number
+              format: float
+              example: 15000.0
+      400:
+        description: Erreur dans les paramètres
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+            details:
+              type: string
+      500:
+        description: Erreur serveur
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+            details:
+              type: string
+    """
+    return cars.predict()
 
 if __name__ == '__main__':
     app.run(debug=True)
