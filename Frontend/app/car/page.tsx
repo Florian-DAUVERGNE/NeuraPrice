@@ -4,7 +4,7 @@ import DynamicForm from "@/components/basic/DynamicForm";
 import { Car } from "lucide-react";
 import FormField from "@/types/FormField.interface";
 import PhoneFormData from "@/types/PhoneFormData.interface";
-import { Brand,Conditions } from "@/types/enums/phone.enum";
+//import { Brand,Conditions } from "@/types/enums/phone.enum";
 import { useFormSubmit } from "@/hooks/useFormSubmit";
 
 
@@ -29,13 +29,13 @@ const marque = [
 
 const carburants = ["Essence", "Diesel", "Electrique", "Hybride"]
 const boites_vitesse = ["Manuelle", "Automatique"]
-const types_vehicules = ["Berline", "Break", "SUV", "Coupé", "Monospace", "Pick-up"]
-const pays_origine = ["France", "Allemagne", "Suede", "Italie", "Espagne", "Belgique", "Royaume-Uni", "Autriche"]
-const couleurs = ["Noir", "Blanc", "Gris", "Bleu", "Rouge", "Vert", "Jaune", "Argent", "Orange"]
-const critaires_air = ["Euro 4", "Euro 5", "Euro 6", "Euro 6", "Euro 7", "Euro 8"]
-const classes_co2 = ["A", "B", "C", "D", "E"]
+//const types_vehicules = ["Berline", "Break", "SUV", "Coupé", "Monospace", "Pick-up"]
+//const pays_origine = ["France", "Allemagne", "Suede", "Italie", "Espagne", "Belgique", "Royaume-Uni", "Autriche"]
+//const couleurs = ["Noir", "Blanc", "Gris", "Bleu", "Rouge", "Vert", "Jaune", "Argent", "Orange"]
+//const critaires_air = ["Euro 4", "Euro 5", "Euro 6", "Euro 6", "Euro 7", "Euro 8"]
+//const classes_co2 = ["A", "B", "C", "D", "E"]
 const types_puissance = ["65", "75", "90", "95", "110", "120", "130", "150", "200"]
-const n_places = ["2", "5", "7"]
+//const n_places = ["2", "5", "7"]
 
 
 
