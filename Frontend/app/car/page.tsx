@@ -3,43 +3,10 @@
 import DynamicForm from "@/components/basic/DynamicForm";
 import { Car } from "lucide-react";
 import FormField from "@/types/FormField.interface";
-import PhoneFormData from "@/types/PhoneFormData.interface";
-//import { Brand,Conditions } from "@/types/enums/phone.enum";
+
+import CarFormData from "@/types/CarFormData.interface";
+import { Marque, Carburant, BoiteVitesse, CritaireAir, Couleur, Pays, TypeVehicule } from "@/types/enums/car.enum";
 import { useFormSubmit } from "@/hooks/useFormSubmit";
-
-
-const marque = [
-  "Renault",
-  "Peugeot",
-  "BMW",
-  "Audi",
-  "Mercedes",
-  "Volkswagen",
-  "Toyota",
-  "Citroen",
-  "Ford",
-  "Tesla",
-  "Dacia",
-  "Hyundai",
-  "Kia",
-  "Kia",
-  "Porsche",
-  "Nissan"
-]
-
-const carburants = ["Essence", "Diesel", "Electrique", "Hybride"]
-const boites_vitesse = ["Manuelle", "Automatique"]
-//const types_vehicules = ["Berline", "Break", "SUV", "Coupé", "Monospace", "Pick-up"]
-//const pays_origine = ["France", "Allemagne", "Suede", "Italie", "Espagne", "Belgique", "Royaume-Uni", "Autriche"]
-//const couleurs = ["Noir", "Blanc", "Gris", "Bleu", "Rouge", "Vert", "Jaune", "Argent", "Orange"]
-//const critaires_air = ["Euro 4", "Euro 5", "Euro 6", "Euro 6", "Euro 7", "Euro 8"]
-//const classes_co2 = ["A", "B", "C", "D", "E"]
-const types_puissance = ["65", "75", "90", "95", "110", "120", "130", "150", "200"]
-//const n_places = ["2", "5", "7"]
-
-
-
-
 
 export default function PhoneForm() {
   const { handleFormSubmit } = useFormSubmit();
@@ -50,7 +17,7 @@ export default function PhoneForm() {
       label: "Marque",
       type: "select",
       placeholder: "Sélectionnez la marque",
-      options: marque,
+      options: Object.values(Marque),
       required: true,
     },
     {
@@ -65,7 +32,7 @@ export default function PhoneForm() {
       label: "Carburant",
       type: "select",
       placeholder: "Sélectionnez le carburant",
-      options: carburants,
+      options: Object.values(Carburant),
       required: true,
     },
     {
@@ -73,15 +40,14 @@ export default function PhoneForm() {
       label: "Boite de vitesse",
       type: "select",
       placeholder: "Sélectionnez la boite de vitesse",
-      options: boites_vitesse,
+      options:  Object.values(BoiteVitesse),
       required: true,
     },
     {
       name: "Puissance",
       label: "Puissance",
-      type: "select",
+      type: "input",
       placeholder: "Saisissez la puissance",
-      options: types_puissance,
       required: true,
     },    
 
@@ -90,17 +56,43 @@ export default function PhoneForm() {
       label: "Critere'air",
       type: "select",
       placeholder: "Saisissez le critere'air",
+      options: Object.values(CritaireAir),
       required: true,
-
-
     },
     {
       name: "Couleur",
       label: "Couleur",
       type: "select",
       placeholder: "Saisissez la couleur",
+      options: Object.values(Couleur),
+      required: true,
+
+    },
+    {
+      name: "Type_vehicule",
+      label: "Type de vehicule",
+      type: "select",
+      placeholder: "Saisissez le type de vehicule",
+      options: Object.values(TypeVehicule),
       required: true,
     },
+    {
+      name: "Pays",
+      label: "Pays d'origine",
+      type: "select",
+      placeholder: "Saisissez le pays d'origine",
+      options: Object.values(Pays),
+      required: true,
+    },
+    {
+      name: "age",
+      label: "Age",
+      type: "input",
+      placeholder: "Saisissez l'age",
+      required: true,
+    },
+
+
   ];
 
   return (
@@ -109,7 +101,7 @@ export default function PhoneForm() {
         Icon={Car}
         title="Estimez le prix de votre voiture"
         fields={fields}
-        onSubmit={(data: PhoneFormData) => handleFormSubmit(data, fields)}
+        onSubmit={(data: CarFormData) => handleFormSubmit(data, fields)}
       />
 
     </main>

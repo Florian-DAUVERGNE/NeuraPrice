@@ -28,7 +28,7 @@ def predict():
         return jsonify({"error": "Modèle non disponible"}), 500
     try:
         # Récupérer les données envoyées
-        data = request.json
+        data = request.json["allParams"]
         # Vérifier si toutes les colonnes attendues sont présentes
         missing_features = [feature for feature in expected_features if feature not in data]
         if missing_features:
@@ -62,7 +62,7 @@ def predict():
         df_input['Type_vehicule'] = encoder['type_vehicule_encoder'].transform(df_input['Type_vehicule'])
         df_input['Pays'] = encoder['pays_encoder'].transform(df_input['Pays'])
 
-        
+        df_input['age'] = int(df_input['age'])
 
         prediction = model.predict(df_input)
         
