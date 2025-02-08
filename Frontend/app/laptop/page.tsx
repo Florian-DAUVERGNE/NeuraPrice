@@ -24,20 +24,34 @@ const os = 'Windows 10'
 const weight = 2.8*/
 
 
+const comp = ['Apple', 'HP', 'Acer', 'Asus', 'Dell', 'Lenovo', 'Chuwi', 'MSI',
+  'Microsoft', 'Toshiba', 'Huawei', 'Xiaomi', 'Vero', 'Razer',
+  'Mediacom', 'Samsung', 'Google', 'Fujitsu', 'LG']
+
+const type = ['Ultrabook', 'Notebook', 'Netbook', 'Gaming', '2 in 1 Convertible',
+  'Workstation']
+
+const resolution = ['2560x1600', '1440x900', '1920x1080', '2880x1800', '1366x768',
+  '2304x1440', '3200x1800', '1920x1200', '2256x1504', '3840x2160',
+  '2160x1440', '2560x1440', '1600x900', '2736x1824', '2400x1600']
+
+const cpu = ['Intel Core i5', 'Intel Core i7', 'AMD A-Series', 'Intel Core i3',
+  'Intel Core M', 'Intel Atom', 'AMD E-Series', 'Intel Celeron Dual',
+  'AMD Processor', 'Intel Pentium Quad', 'Intel Processor']
+
+const os = ['Mac', 'No OS', 'Windows 10', 'Mac X', 'Linux', 'Android',
+  'Windows 10 S', 'Chrome OS', 'Windows 7']
+
+const gpu = ['Intel', 'AMD', 'Nvidia']
+
+
+
 interface LaptopSpecs {
   comp: string; // Brand of the laptop
   type: string; // Type of usage, e.g., Gaming, Work, etc.
   inch: number; // Screen size in inches
-  xres: number; // Screen resolution width
-  yres: number; // Screen resolution height
-  ips: boolean; // Whether the display is IPS (true) or not (false)
-  touchscreen: boolean; // Whether the screen is touchscreen (true) or not (false)
+  res: string; // Screen resolution 
   cpu: string; // Processor model
-  cpufreq: number; // Processor frequency in GHz
-  ram: number; // RAM size in GB
-  hdd: number; // HDD size in GB
-  ssd: number; // SSD size in GB
-  flash_storage: number; // Flash storage size in GB
   gpu: string; // Graphics card brand/model
   os: string; // Operating system
   weight: number; // Weight in kg
@@ -52,7 +66,7 @@ export default function LaptopForm() {
       label: "Marque",
       type: "select",
       placeholder: "Entrez la marque",
-      options: ["MSI"],
+      options: comp,
       required: true,
     },
     {
@@ -60,7 +74,7 @@ export default function LaptopForm() {
       label: "Type",
       type: "select",
       placeholder: "Entrez le type",
-      options: ["Gaming"],
+      options: type,
       required: true,
     },
     {
@@ -71,93 +85,40 @@ export default function LaptopForm() {
       required: true,
     },
     {
-      name: "X_res",
-      label: "Résolution X",
-      type: "input",
-      placeholder: "Entrez la résolution horizontale",
-      required: true,
-    },
-    {
-      name: "Y_res",
-      label: "Résolution Y",
-      type: "input",
-      placeholder: "Entrez la résolution verticale",
-      required: true,
-    },
-    {
-      name: "Ips",
-      label: "Écran IPS",
+      name: "Gpu",
+      label: "Carte graphique",
       type: "select",
-      placeholder: "ips",
-      options: ["Oui","Non"],
+      placeholder: "Entrez la carte graphique",
+      options: gpu,
       required: true,
+
     },
     {
-      name: "Touchscreen",
-      label: "Écran tactile",
+      name: "resolution",
+      label: "Résolution",
       type: "select",
-      placeholder: "",
-      options: ["Oui","Non"],
-      required: false,
+      placeholder: "Entrez la résolution",
+      options: resolution,
+      required: true,
+
     },
     {
       name: "CPU Name",
       label: "Processeur",
       type: "select",
       placeholder: "Entrez le processeur",
-      options: ["Intel Core i7"],
+      options: cpu,
       required: true,
-    },
-    {
-      name: "CPU Freq (GHz)",
-      label: "Fréquence CPU (GHz)",
-      type: "input",
-      placeholder: "Entrez la fréquence du processeur",
-      required: true,
-    },
-    {
-      name: "RAM (GB)",
-      label: "Mémoire RAM (Go)",
-      type: "input",
-      placeholder: "Entrez la mémoire RAM",
-      required: true,
-    },
-    {
-      name: "HDD",
-      label: "Stockage HDD (Go)",
-      type: "input",
-      placeholder: "Entrez la capacité HDD",
-      required: true,
-    },
-    {
-      name: "SSD",
-      label: "Stockage SSD (Go)",
-      type: "input",
-      placeholder: "Entrez la capacité SSD",
-      required: false,
-    },
-    {
-      name: "Flash Storage",
-      label: "Stockage Flash (Go)",
-      type: "input",
-      placeholder: "Entrez la capacité de stockage Flash",
-      required: false,
-    },
-    {
-      name: "Gpu",
-      label: "Carte graphique",
-      type: "select",
-      placeholder: "Entrez la carte graphique",
-      options: ["Nvidia"],
-      required: true,
+
     },
     {
       name: "OS",
       label: "Système d'exploitation",
       type: "select",
       placeholder: "Entrez le système d'exploitation",
-      options: ["Windows 10"],
+      options: os,
       required: true,
+
     },
     {
       name: "Weight (kg)",
