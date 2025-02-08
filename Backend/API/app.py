@@ -12,8 +12,6 @@ CORS(app)
 def api():
     return redirect("/apidocs", code=302)
 
-
-
 # Routes pour les téléphones
 @app.route('/predict/phone', methods=['POST'])
 def predict_phone():
