@@ -215,7 +215,7 @@ def predict_realestate():
     """
     return realestate.predict()
 
-@app.route('/predict/cars', methods=['POST'])
+@app.route('/predict/car', methods=['POST'])
 def predict_cars():
     """
     Prédiction du prix de voitures
