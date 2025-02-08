@@ -3,62 +3,12 @@ import DynamicForm from "@/components/basic/DynamicForm";
 import { Laptop } from "lucide-react";
 import FormField from "@/types/FormField.interface";
 import { useFormSubmit } from "@/hooks/useFormSubmit";
-//import PhoneFormData from "@/types/PhoneFormData.interface";
-/*import { Brand,Conditions } from "@/types/enums/phone/phone.enum";
-
-const comp = 'MSI'
-const type = 'Gaming'
-const inch = 17.3
-const xres = 1920  
-const yres = 1080  
-const ips = 0
-const touchscreen = 0
-const cpu = 'Intel Core i7'
-const cpufreq = 2.8
-const ram = 32
-const hdd = 500
-const ssd = 0
-const flash_storage = 0
-const gpu = 'Nvidia'
-const os = 'Windows 10'
-const weight = 2.8*/
-
-
-const comp = ['Apple', 'HP', 'Acer', 'Asus', 'Dell', 'Lenovo', 'Chuwi', 'MSI',
-  'Microsoft', 'Toshiba', 'Huawei', 'Xiaomi', 'Vero', 'Razer',
-  'Mediacom', 'Samsung', 'Google', 'Fujitsu', 'LG']
-
-const type = ['Ultrabook', 'Notebook', 'Netbook', 'Gaming', '2 in 1 Convertible',
-  'Workstation']
-
-const resolution = ['2560x1600', '1440x900', '1920x1080', '2880x1800', '1366x768',
-  '2304x1440', '3200x1800', '1920x1200', '2256x1504', '3840x2160',
-  '2160x1440', '2560x1440', '1600x900', '2736x1824', '2400x1600']
-
-const cpu = ['Intel Core i5', 'Intel Core i7', 'AMD A-Series', 'Intel Core i3',
-  'Intel Core M', 'Intel Atom', 'AMD E-Series', 'Intel Celeron Dual',
-  'AMD Processor', 'Intel Pentium Quad', 'Intel Processor']
-
-const os = ['Mac', 'No OS', 'Windows 10', 'Mac X', 'Linux', 'Android',
-  'Windows 10 S', 'Chrome OS', 'Windows 7']
-
-const gpu = ['Intel', 'AMD', 'Nvidia']
-
-
-
-interface LaptopSpecs {
-  comp: string; // Brand of the laptop
-  type: string; // Type of usage, e.g., Gaming, Work, etc.
-  inch: number; // Screen size in inches
-  res: string; // Screen resolution 
-  cpu: string; // Processor model
-  gpu: string; // Graphics card brand/model
-  os: string; // Operating system
-  weight: number; // Weight in kg
-}
+import { LaptopSpecs } from "@/types/LaptopFormData.interface";
+import { Company, LaptopType, Resolution, CPU, OS, GPU } from "@/types/enums/laptop.enum";
 
 export default function LaptopForm() {
   const { handleFormSubmit } = useFormSubmit();
+
 
   const fields: FormField[] = [
     {
@@ -66,7 +16,7 @@ export default function LaptopForm() {
       label: "Marque",
       type: "select",
       placeholder: "Entrez la marque",
-      options: comp,
+      options: Object.values(Company),
       required: true,
     },
     {
@@ -74,7 +24,7 @@ export default function LaptopForm() {
       label: "Type",
       type: "select",
       placeholder: "Entrez le type",
-      options: type,
+      options: Object.values(LaptopType),
       required: true,
     },
     {
@@ -89,7 +39,7 @@ export default function LaptopForm() {
       label: "Carte graphique",
       type: "select",
       placeholder: "Entrez la carte graphique",
-      options: gpu,
+      options: Object.values(Resolution),
       required: true,
 
     },
@@ -98,7 +48,7 @@ export default function LaptopForm() {
       label: "Résolution",
       type: "select",
       placeholder: "Entrez la résolution",
-      options: resolution,
+      options: Object.values(CPU),
       required: true,
 
     },
@@ -107,7 +57,7 @@ export default function LaptopForm() {
       label: "Processeur",
       type: "select",
       placeholder: "Entrez le processeur",
-      options: cpu,
+      options: Object.values(OS),
       required: true,
 
     },
@@ -116,7 +66,7 @@ export default function LaptopForm() {
       label: "Système d'exploitation",
       type: "select",
       placeholder: "Entrez le système d'exploitation",
-      options: os,
+      options: Object.values(GPU),
       required: true,
 
     },
