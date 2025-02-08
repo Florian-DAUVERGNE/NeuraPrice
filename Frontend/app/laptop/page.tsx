@@ -39,17 +39,17 @@ export default function LaptopForm() {
       label: "Carte graphique",
       type: "select",
       placeholder: "Entrez la carte graphique",
-      options: Object.values(Resolution),
+      options: Object.values(GPU),
       required: true,
-
     },
     {
       name: "resolution",
       label: "Résolution",
       type: "select",
       placeholder: "Entrez la résolution",
-      options: Object.values(CPU),
+      options: Object.values(Resolution),
       required: true,
+
 
     },
     {
@@ -57,8 +57,9 @@ export default function LaptopForm() {
       label: "Processeur",
       type: "select",
       placeholder: "Entrez le processeur",
-      options: Object.values(OS),
+      options: Object.values(CPU),
       required: true,
+
 
     },
     {
@@ -66,8 +67,9 @@ export default function LaptopForm() {
       label: "Système d'exploitation",
       type: "select",
       placeholder: "Entrez le système d'exploitation",
-      options: Object.values(GPU),
+      options: Object.values(OS),
       required: true,
+
 
     },
     {
