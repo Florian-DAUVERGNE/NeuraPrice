@@ -6,7 +6,7 @@ import numpy as np
 def predict():
     # Load model
     try:
-        with open('../models/laptop/model_pipelineLaptop.pkl', 'rb') as f:
+        with open('./models/laptop/model_pipelineLaptop.pkl', 'rb') as f:
             pipe = pickle.load(f)
     except (FileNotFoundError, pickle.PickleError) as e:
         return jsonify({
@@ -77,13 +77,4 @@ def predict():
         }), 500
 
     # Return successful response with debug info
-    return jsonify({
-        "price": float(price_pred),
-        "debug_info": {
-            "input_parameters": data,
-            "raw_prediction": float(price_pred_raw[0]),
-            "log_transformed": bool(np.any(price_pred_raw < 0)),
-            "dataframe_columns": list(df.columns),
-            "dataframe_dtypes": df.dtypes.to_dict()
-        }
-    })
+    return jsonify({"price": float(price_pred)})

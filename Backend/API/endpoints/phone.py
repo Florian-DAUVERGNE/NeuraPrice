@@ -3,14 +3,14 @@ from flask import request, jsonify
 
 def predict():
     try:
-        with open('../models/phone/model.pkl', 'rb') as f:
+        with open('./models/phone/model.pkl', 'rb') as f:
                     modele_charge = pickle.load(f)
     except (FileNotFoundError, pickle.PickleError) as e:
         return jsonify({ "error": "Failed to load model", "details": str(e) }), 500
           
     # Charger les encodeurs
     try:
-        with open('../models/phone/encodings.pkl', 'rb') as f:
+        with open('./models/phone/encodings.pkl', 'rb') as f:
             encodeurs = pickle.load(f)
             label_encoder_marque = encodeurs['marque_encoder']
             label_encoder_etat = encodeurs['etat_encoder']

@@ -13,11 +13,11 @@ def predict():
 
     # Load models if not already loaded
     try:
-        with open("../models/realestate/preprocessor_real_estate.pkl", "rb") as f:
+        with open("./models/realestate/preprocessor_real_estate.pkl", "rb") as f:
             preprocessor = dill.load(f)
-        with open("../models/realestate/poly_select_pipeline_real_estate.pkl", "rb") as f:
+        with open("./models/realestate/poly_select_pipeline_real_estate.pkl", "rb") as f:
             poly_select_pipeline_real_estate = dill.load(f)
-        with open("../models/realestate/rf_best_model.pkl", "rb") as f:
+        with open("./models/realestate/rf_best_model.pkl", "rb") as f:
             rf_best_model = dill.load(f)
     except (FileNotFoundError, dill.PickleError) as e:
         return jsonify({
