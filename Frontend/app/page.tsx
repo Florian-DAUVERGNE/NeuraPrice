@@ -1,5 +1,5 @@
 "use client"
-import { Phone, Home, FileText, Laptop } from "lucide-react"
+import { Phone, Home, FileText, Laptop, Car } from "lucide-react"
 import HomePageCard from "@/components/basic/HomePageCard";
 
 export default function FormCards() {
@@ -8,17 +8,46 @@ export default function FormCards() {
       <div className="mx-auto max-w-4xl">
         <h1 className="mb-8 text-center text-3xl font-bold text-white animate-fade-in">Nos Formulaires</h1>
         <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-          <HomePageCard content="Remplissez notre formulaire pour obtenir une estimation précise de la valeur de votre téléphone." description="Évaluez le prix de votre téléphone" title="Téléphone" href="/phone" Icon={Phone}></HomePageCard>
+          <HomePageCard 
+            content="Obtenez une estimation instantanée de votre smartphone, notre algorithme analyse les caractéristiques pour une évaluation précise." 
+            description="Estimation gratuite en quelques clics" 
+            title="Téléphones" 
+            href="/phone" 
+            Icon={Phone}
+          />
           
-          <HomePageCard content="Découvrez la valeur de votre bien immobilier avec notre outil d&apos;estimation." description="Estimez votre bien immobilier" title="Immobilier" href="/realestate" Icon={Home}></HomePageCard>
+          <HomePageCard 
+            content="Évaluez la valeur de votre bien immobilier en tenant compte des tendances du marché, de la localisation et des caractéristiques spécifiques de votre propriété." 
+            description="Analyse immobilière détaillée" 
+            title="Immobilier" 
+            href="/realestate" 
+            Icon={Home}
+          />
 
-          <HomePageCard content="" description="" title="" href="/laptop" Icon={Laptop}></HomePageCard>
+          <HomePageCard 
+            content="Déterminez la valeur de votre ordinateur portable ou fixe en fonction de ses spécifications techniques, son état et la demande du marché actuel." 
+            description="Évaluation technique précise" 
+            title="Ordinateurs" 
+            href="/laptop" 
+            Icon={Laptop}
+          />
           
-          <HomePageCard content="Accédez à nos autres services d&apos;estimation et d&apos;évaluation." description="Autres services d&apos;évaluation" title="Autre Estimation" href="/" Icon={FileText}></HomePageCard>
-
-          <HomePageCard content="Accédez à nos autres services d&apos;estimation et d&apos;évaluation." description="Autres services d&apos;évaluation" title="Autre Estimation" href="/" Icon={FileText}></HomePageCard>
-
+          <HomePageCard 
+            content="Obtenez une estimation fiable de votre véhicule basée sur le modèle, l'année, le kilométrage et l'état général." 
+            description="Estimation automobile personnalisée" 
+            title="Voitures" 
+            href="/car" 
+            Icon={Car}
+          />
           
+          <HomePageCard 
+            content="Découvrez notre gamme complète de services d'estimation. Des experts qualifiés pour évaluer tous types de biens et d'objets de valeur." 
+            description="Solutions d'évaluation sur mesure" 
+            title="Autre Estimation" 
+            href="/" 
+            Icon={FileText}
+          />
+
         </div>
       </div>
     </div>

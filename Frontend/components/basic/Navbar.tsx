@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { Home, Phone, Info,BrainCircuit, Laptop } from "lucide-react"
+import { Home, Phone, Info,BrainCircuit, Laptop, Car } from "lucide-react"
 import { usePathname } from "next/navigation"
 
 export function Navbar() {
@@ -34,7 +34,7 @@ export function Navbar() {
                   pathname === "/phone" ? "border-purple-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                 } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
               >
-                <Phone className="mr-1 h-4 w-4" />Téléphone
+                <Phone className="mr-1 h-4 w-4" />Téléphones
               </Link>
               <Link
                 href="/realestate"
@@ -52,7 +52,15 @@ export function Navbar() {
                 } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
               >
                 <Laptop className="mr-1 h-4 w-4" />
-                Ordinateur
+                Ordinateurs
+              </Link>
+              <Link
+                href="/car"
+                className={`${
+                  pathname === "/car" ? "border-purple-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+              >
+                <Car className="mr-1 h-4 w-4" />Voitures
               </Link>
               <Link
                 href="/about"
