@@ -64,8 +64,6 @@ def predict():
 
         df_input['age'] = int(df_input['age'])
 
-        
-
         prediction = model.predict(df_input)
         
         # Arrondir le prix à 2 chiffres après la virgule
