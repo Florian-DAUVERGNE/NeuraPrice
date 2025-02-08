@@ -1,0 +1,56 @@
+name: Build and deploy Python app to Azure Web App - neuraPriceAPIV2neuraPrice
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Backend/API/**'  # Déclencher uniquement si des modifications sont faites dans Backend/API
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        working-directory: Backend/API  # Définir le répertoire de travail par défaut
+    
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python version
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    - name: Create and start virtual environment
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Upload artifact for deployment jobs
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-app
+        path: |
+          Backend/API
+          !Backend/API/venv/
+        retention-days: 30
+
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'neuraPriceAPIV2neuraPrice'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: Backend/API
