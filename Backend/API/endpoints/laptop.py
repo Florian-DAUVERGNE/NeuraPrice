@@ -31,10 +31,9 @@ def predict():
 
     # Validate required fields
     try:
-        required_keys = ['Company', 'TypeName', 'Inches', 'Gpu', 'Touchscreen', 'Ips', 
-                        'X_res', 'Y_res', 'CPU Name', 'CPU Freq (GHz)', 'RAM (GB)', 
-                        'HDD', 'SSD', 'Flash Storage', 'OS', 'Weight (kg)']
+        required_keys = ['Company', 'TypeName', 'Inches', 'Gpu', 'resolution', 'CPU Name', 'OS', 'Weight (kg)']
         
+
         missing_keys = [key for key in required_keys if key not in data]
         if missing_keys:
             return jsonify({
@@ -52,10 +51,11 @@ def predict():
     # Process boolean values
     try:
         for key, value in data.items():
-            if isinstance(value, str) and value.lower() == "true":
+            if isinstance(value, str) and value.lower() == "oui":
                 data[key] = 1
-            if isinstance(value, str) and value.lower() == "false":
+            if isinstance(value, str) and value.lower() == "non":
                 data[key] = 0
+
     except Exception as e:
         return jsonify({
             "error": "Boolean conversion failed",
@@ -65,9 +65,31 @@ def predict():
 
     # Create DataFrame and predict
     try:
+        # Ajout des valeurs par défaut
+        data["Touchscreen"] = 0
+        data["Ips"] = 0
+        
+        # Extraire la résolution
+        resolution = data.get("resolution", "1366x768")  # valeur par défaut si non spécifiée
+        data["X_res"] = int(resolution.split("x")[0])
+        data["Y_res"] = int(resolution.split("x")[1])
+        
+        # Ajout des autres valeurs par défaut
+        data["CPU Freq (GHz)"] = 2.29
+        data["RAM (GB)"] = 8
+        data["HDD"] = 128
+        data["SSD"] = 128
+        data["Flash Storage"] = 0
+
+        print("--------------------------------")
+        print(data)
+        print("--------------------------------")
+
         df = pd.DataFrame(data, index=[0])
+
         price_pred_raw = pipe.predict(df)
         price_pred = np.exp(price_pred_raw)[0] if np.any(price_pred_raw < 0) else price_pred_raw[0]
+
     except Exception as e:
         return jsonify({
             "error": "Prediction failed",
