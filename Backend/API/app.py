@@ -30,12 +30,15 @@ def predict_phone():
         schema:
           type: object
           properties:
-            brand:
-              type: string
-              example: "Apple"
-            condition:
-              type: string
-              example: "Occasion"
+            allParams:
+              type: object
+              properties:
+                brand:
+                  type: string
+                  example: "Apple"
+                condition:
+                  type: string
+                  example: "Occasion"
     responses:
       200:
         description: Prix prédit
