@@ -6,10 +6,15 @@ on:
       - main
     paths:
       - 'Backend/API/**'  # Déclencher uniquement si des modifications sont faites dans Backend/API
+  pull_request:
+    types: [closed]  # Se déclenche uniquement quand la PR est fermée
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   build-and-deploy:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     
     defaults:
