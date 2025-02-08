@@ -4,9 +4,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'Frontend/**'  # Déclencher uniquement si des modifications sont faites dans Frontend
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
+
       - main
 
 jobs:
