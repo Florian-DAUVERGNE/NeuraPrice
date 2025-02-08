@@ -45,7 +45,7 @@ def predict_phone():
           properties:
             price:
               type: string
-              example: "500.0"
+              example: "300.0"
     """
     return phone.predict()
 
