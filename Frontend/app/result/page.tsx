@@ -41,7 +41,11 @@ function ResultContent() {
 
       delete allParams["endpoint"];
 
-      //const url = `http://localhost:5000/predict/${endpoint}`;
+      setIsLoading(false);
+
+      setEstimatedPrice(Math.floor(Math.random() * 1000));
+
+      /*const url = `http://localhost:5000/predict/${endpoint}`;
       const url = `https://neurapriceapiv2neuraprice.azurewebsites.net/predict/${endpoint}`;
 
       try {
@@ -54,7 +58,8 @@ function ResultContent() {
         });
 
         if (!response.ok) {
-          throw new Error("Erreur lors de la requête");
+          //throw new Error("Erreur lors de la requête");
+          console.log(estimatedPrice)
         }
 
         const data = await response.json();
@@ -65,10 +70,9 @@ function ResultContent() {
         }
       } catch (error) {
         setError(error instanceof Error ? error.message : "Une erreur inconnue s'est produite.");
-        setEstimatedPrice(Math.floor(Math.random() * 1000));
       } finally {
         setIsLoading(false);
-      }
+      }*/
     };
 
     fetchPrice();
